@@ -1,0 +1,304 @@
+@import '@trimble-oss/moduswebcomponents/modus-wc-styles.css';
+@import 'tailwindcss';
+
+:root {
+  --padding-card: 1rem;
+  --app-navbar-height: 56px;
+  --side-nav-min-width: 4rem;
+  --side-nav-max-width: 256px;
+}
+
+html,
+body {
+  height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background-color: var(--modus-wc-color-base-page);
+  color: var(--modus-wc-color-base-content);
+  font-family: var(--font-open-sans), 'Open Sans', sans-serif;
+}
+
+body > modus-wc-theme-provider {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  background-color: var(--modus-wc-color-base-page);
+}
+
+.app-body-row {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.side-rail-wrapper {
+  position: fixed;
+  left: 0;
+  top: var(--app-navbar-height, 56px);
+  height: calc(100dvh - var(--app-navbar-height, 56px));
+  width: var(--app-rail-width, 4rem);
+  z-index: 130;
+  overflow: hidden;
+}
+
+.side-rail-wrapper.is-overlay-collapsed {
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.side-rail-wrapper modus-wc-side-navigation,
+.side-rail-wrapper modus-wc-side-navigation .modus-wc-side-navigation {
+  width: 100%;
+}
+
+modus-wc-side-navigation modus-wc-menu-item {
+  padding-inline: 0;
+  margin-block: var(--modus-wc-spacing-2xs, 0.25rem);
+}
+
+#main-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  background-color: var(--modus-wc-color-base-page);
+  scrollbar-gutter: stable;
+}
+
+@media (min-width: 1024px) {
+  .app-shell #main-content {
+    margin-left: var(--side-nav-min-width);
+  }
+
+  .app-shell.app-shell-expanded #main-content {
+    margin-left: var(--side-nav-max-width);
+  }
+}
+
+@media (max-width: 1023px) {
+  .app-shell #main-content {
+    margin-left: 0 !important;
+  }
+}
+
+.app-shell modus-wc-navbar [slot='center'][hidden] {
+  display: none !important;
+}
+
+modus-wc-card modus-wc-card article {
+  background-color: var(--modus-wc-color-base-100) !important;
+}
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--modus-wc-spacing-xl, 1.5rem);
+}
+
+.page-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--modus-wc-spacing-md, 1rem);
+}
+
+.stat-card-value-danger {
+  color: var(--modus-wc-color-danger);
+}
+
+.stat-card-value-warning {
+  color: var(--modus-wc-color-warning);
+}
+
+.stat-card-value-success {
+  color: var(--modus-wc-color-success);
+}
+
+.relation-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .relation-split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.relation-split-col {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.pdf-preview-shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--modus-wc-spacing-sm, 0.5rem);
+  min-height: 28rem;
+  height: 100%;
+}
+
+.pdf-preview-page {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 26rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--modus-wc-spacing-lg, 1.25rem);
+  padding: var(--modus-wc-spacing-xl, 1.5rem);
+  border: 1px solid var(--modus-wc-color-base-200);
+  background-color: var(--modus-wc-color-base-100);
+  box-shadow: var(--app-elevation-sm, 0 1px 2px color-mix(in srgb, var(--modus-wc-color-base-content) 8%, transparent));
+}
+
+.pdf-preview-page::before {
+  content: '';
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px dashed var(--modus-wc-color-base-200);
+  pointer-events: none;
+}
+
+.pump-schematic {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--modus-wc-spacing-xs, 0.375rem);
+}
+
+.pump-row {
+  display: flex;
+  align-items: center;
+}
+
+.pump-motor {
+  width: 5.5rem;
+  height: 2.5rem;
+  border-radius: var(--modus-wc-border-radius-sm, 4px);
+  background-color: var(--modus-wc-color-primary);
+}
+
+.pump-shaft {
+  width: 1.25rem;
+  height: 0.5rem;
+  background-color: var(--modus-wc-color-base-content-low-contrast);
+}
+
+.pump-volute {
+  position: relative;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  border: 0.4rem solid var(--modus-wc-color-primary);
+  background-color: var(--modus-wc-color-base-page);
+}
+
+.pump-impeller {
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background-color: var(--modus-wc-color-primary);
+  opacity: 0.35;
+}
+
+.pump-discharge {
+  width: 1.5rem;
+  height: 0.7rem;
+  margin-bottom: 1.5rem;
+  background-color: var(--modus-wc-color-primary);
+}
+
+.pump-base {
+  width: 8.5rem;
+  height: 0.45rem;
+  border-radius: 2px;
+  background-color: var(--modus-wc-color-base-content-low-contrast);
+}
+
+.capture-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--modus-wc-spacing-sm);
+  padding-block: var(--modus-wc-spacing-sm);
+  border-bottom: 1px solid var(--modus-wc-color-base-200);
+}
+
+.nameplate-preview {
+  display: flex;
+  min-height: 16rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--modus-wc-spacing-sm);
+  border: 1px solid var(--modus-wc-color-base-200);
+  border-radius: var(--modus-wc-border-radius, 8px);
+  background-color: var(--modus-wc-color-base-200);
+  padding: var(--modus-wc-spacing-md);
+}
+
+.nameplate-preview-plate {
+  background-color: var(--modus-wc-color-base-100);
+  border: 1px solid var(--modus-wc-color-base-content);
+  border-radius: 4px;
+  padding: var(--modus-wc-spacing-sm);
+}
+
+.catalog-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-width: 22rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+modus-wc-navbar:not(:defined),
+modus-wc-side-navigation:not(:defined),
+modus-wc-button:not(:defined),
+modus-wc-card:not(:defined),
+modus-wc-typography:not(:defined),
+modus-wc-icon:not(:defined),
+modus-wc-badge:not(:defined),
+modus-wc-chip:not(:defined) {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--modus-wc-color-primary);
+  outline-offset: 2px;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "am-c01-sandbox-validation",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@trimble-oss/moduswebcomponents-react": "1.16.0-react19",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@trimble-oss/modus-icons": "1.8.0",
+    "@types/node": "22.19.0",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}
